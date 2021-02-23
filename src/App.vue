@@ -144,7 +144,7 @@ export default {
       streamkey: null,
       drawer: null,
       streams: null,
-      loading: false,
+      loading: true,
     }
   },
   watch: {},
