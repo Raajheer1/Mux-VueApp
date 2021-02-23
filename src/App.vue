@@ -114,7 +114,7 @@
     </v-navigation-drawer>
 
     <v-main>
-      <!--  -->
+      <video-grid v-bind:streams="streams"></video-grid>
     </v-main>
 
     <v-footer
@@ -137,23 +137,24 @@
 
 <script>
 import axios from 'axios';
+import videoGrid from './components/videoGrid'
 
 export default {
   name: 'App',
   data() {
     return {
       drawer: null,
-      STREAM: ""
+      streams: null,
     }
   },
   watch: {},
   computed: {},
-  components: { },
+  components: { videoGrid },
   methods: {
 
   },
   mounted() {
-    axios.get("https://muxpresman.herokuapp.com/list").then(response => { console.log(response.data)});
+    axios.get("https://muxpresman.herokuapp.com/list").then(response => { this.streams = response.data});
   }
 }
 </script>
