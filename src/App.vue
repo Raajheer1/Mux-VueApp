@@ -137,7 +137,7 @@
 
 <script>
 import axios from 'axios';
-import videoGrid from './components/videoGrid'
+import videoGrid from './components/videoGrid';
 
 export default {
   name: 'App',
@@ -154,7 +154,9 @@ export default {
 
   },
   mounted() {
-    axios.get("https://muxpresman.herokuapp.com/list").then(response => { this.streams = response.data});
+    axios.get("https://muxpresman.herokuapp.com/list").then(response => {
+      this.streams = response.data
+    });
   }
 }
 </script>
