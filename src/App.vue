@@ -153,7 +153,7 @@ export default {
 
   },
   mounted() {
-    axios.get("https://muxpresman.herokuapp.com/list").then(response => { console.log(response)});
+    axios.get("https://muxpresman.herokuapp.com/list").then(response => { console.log(response.data)});
   }
 }
 </script>
