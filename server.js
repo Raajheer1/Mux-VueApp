@@ -13,7 +13,8 @@ const { Video } = new Mux("577af3aa-3e59-4a98-8462-07b369ee48cd", "fB0dD77dio5/i
 
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(serveStatic(__dirname + '/dist'));
-app.use(history());
+//app.use(history());
+
 app.get('/list', async (req, res) => {
     const stream = await Video.LiveStreams.list();
     res.send(stream);
