@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
-    proxy: "http://api.back.end"
+    proxy: "https://muxpresman.herokuapp.com"
   },
   transpileDependencies: [
     'vuetify'
