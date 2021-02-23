@@ -1,14 +1,13 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col v-for="column in columns" :key="column">
-        <div v-for="item in column" :key="item">
-          <div v-if="item.status == 'active'">
-            <VideoPlayer :options="item" />
-          </div>
-          <div v-else>
-            Idle Stream
-          </div>
+
+    <v-row v-for="column in columns" :key="column.id">
+      <v-col v-for="item in column" :key="item.id">
+        <div v-if="item.status == 'active'">
+          <VideoPlayer :options="item" />
+        </div>
+        <div v-else>
+          Idle Stream
         </div>
       </v-col>
     </v-row>
@@ -33,10 +32,13 @@ export default {
   computed: {
     columns () {
       let columns = []
-      let mid = Math.ceil(this.streams.length / this.cols)
-      for (let col = 0; col < this.cols; col++) {
-        columns.push(this.streams.slice(col * mid, col * mid + mid))
-      }
+      columns.push([])
+      this.streams.forEach((item, key) => {
+        columns[Math.floor(key/this.cols)].push(item);
+        if(key%3 == 2){
+          columns.push([]);
+        }
+      })
       return columns
     }
   },
