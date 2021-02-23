@@ -2,7 +2,12 @@
   <v-container>
     <v-row>
       <v-col v-for="item in streams" :key="item">
-        <VideoPlayer :options="item" />
+        <div v-if="item.status == 'active'">
+          <VideoPlayer :options="item" />
+        </div>
+        <div v-else>
+          Idle Stream
+        </div>
       </v-col>
     </v-row>
   </v-container>
