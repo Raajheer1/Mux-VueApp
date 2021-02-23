@@ -18,7 +18,7 @@ app.use(serveStatic(__dirname + '/dist'));
 app.get('/list', async (req, res) => {
     const stream = await Video.LiveStreams.list();
     res.send(stream);
-}
+});
 
 app.get('/create', async (req, res) => {
     return await Video.LiveStreams.create({
