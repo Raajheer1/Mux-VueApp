@@ -103,7 +103,7 @@
       <v-list>
         <v-list-item v-for="item, key in streams" :key="key" link>
           <v-list-item-content>
-            <v-list-item-title>Stream {{ n }}</v-list-item-title>
+            <v-list-item-title>Stream {{ key }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
