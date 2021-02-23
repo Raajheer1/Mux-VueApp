@@ -150,6 +150,8 @@ export default {
 
   },
   mounted() {
+  },
+  created() {
     axios.get("https://muxpresman.herokuapp.com/list").then(response => {
       this.streams = response.data
     });
