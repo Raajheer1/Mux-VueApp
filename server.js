@@ -18,6 +18,14 @@ app.use(serveStatic(__dirname + '/dist'));
 app.get('/list', async (req, res) => {
     const stream = await Video.LiveStreams.list();
     res.send(stream);
-})
+}
+
+app.get('/create', async (req, res) => {
+    return await Video.LiveStreams.create({
+        playback_policy: 'public',
+        reconnect_window: 10,
+        new_asset_settings: { playback_policy: 'public'}
+    });
+});
 
 app.listen(process.env.PORT || 5000);

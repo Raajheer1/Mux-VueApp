@@ -136,10 +136,7 @@
 </template>
 
 <script>
-const Mux = require('@mux/mux-node');
-const { Video } = new Mux("577af3aa-3e59-4a98-8462-07b369ee48cd", "fB0dD77dio5/isG2FAJ8uvVBAeqKHY106t4KrRvr5rJVOdK4iCnijgtLmkkPEUUA5MhvmgkmM3/");
-Video.LiveStreams.list({ limit: 100, page: 2 });
-
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -149,10 +146,14 @@ export default {
       STREAM: ""
     }
   },
+  watch: {},
+  computed: {},
   components: { },
   methods: {
 
+  },
+  mounted() {
+    axios.get("https://muxpresman.herokuapp.com/list").then(response => { console.log(response)});
   }
-
 }
 </script>
