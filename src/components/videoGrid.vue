@@ -32,6 +32,7 @@ export default {
   watch: {},
   computed: {
     columns () {
+      console.log(this.streams);
       let columns = []
       let mid = Math.ceil(this.streams.length / this.cols)
       for (let col = 0; col < this.cols; col++) {
