@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted() {
-    this.player = videojs(this.$refs.videoPlayer, {autoplay: true, controls: true}, function onPlayerReady() {
+    this.player = videojs(this.$refs.videoPlayer, {autoplay: true, controls: true, fluid: true}, function onPlayerReady() {
       console.log('onPlayerReady', this);
     })
   },

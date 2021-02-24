@@ -1,8 +1,8 @@
 <template>
   <v-container>
 
-    <v-row v-for="column in columns" :key="column.id">
-      <v-col v-for="item in column" :key="item.id">
+    <v-row v-for="column in columns" :key="column.id" class="v-row__border">
+      <v-col v-for="item in column" :key="item.id" class="v-col__border">
         <div v-if="item.status == 'active'">
           <VideoPlayer :options="item" />
         </div>
@@ -52,5 +52,12 @@ export default {
 </script>
 
 <style scoped>
+.v-row__border{
+  border-bottom: #272727 1px solid;
+}
 
+.v-col__border{
+  border-left: #272727 1px solid;
+  border-right: #272727 1px solid;
+}
 </style>
