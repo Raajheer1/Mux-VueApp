@@ -69,7 +69,7 @@
       >
         <v-list-item link>
           <v-list-item-content>
-            <v-list-item-title @click="this.overview = true; this.streamkey = null;">Overview</v-list-item-title>
+            <v-list-item-title @click="OverviewButton">Overview</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
@@ -103,7 +103,7 @@
       <v-list>
         <v-list-item v-for="item, key in streams" :key="key" link>
           <v-list-item-content>
-            <v-list-item-title @click="StreamButton(item)">Stream {{ key }}</v-list-item-title>
+            <v-list-item-title @click="StreamButton(item)">Stream {{ key+1 }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -113,7 +113,28 @@
       <div v-if="this.streamkey != null">
         <VideoPlayer :options="this.streamkey" />
       </div>
-      <div v-else-if="loading">Loading...</div>
+      <div v-else-if="loading">
+        <v-row no-gutters>
+          <v-col cols="4">
+
+          </v-col>
+          <v-col cols="4">
+            <v-card color="#363636" dark>
+              <v-card-text>
+                Loading
+                <v-progress-linear
+                    indeterminate
+                    color="#05ffbc"
+                    class="mb-0"
+                ></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-col>
+          <v-col cols="4">
+
+          </v-col>
+        </v-row>
+      </div>
       <video-grid v-else v-bind:streams="streams"></video-grid>
     </v-main>
 
@@ -162,8 +183,16 @@ export default {
       });
     },
     StreamButton(item){
-      this.streamkey = item;
-      this.overview = false;
+      if(item.status == "active"){
+        this.streamkey = item;
+        this.overview = false;
+      }else{
+        alert("Stream Inactive")
+      }
+    },
+    OverviewButton(){
+      this.overview = true;
+      this.streamkey = null;
     }
   },
   mounted() {

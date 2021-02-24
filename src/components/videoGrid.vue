@@ -2,12 +2,12 @@
   <v-container>
 
     <v-row v-for="column in columns" :key="column.id" class="v-row__border">
-      <v-col v-for="item in column" :key="item.id" class="v-col__border">
+      <v-col v-for="item, key in column" :key="item.id" class="v-col__border">
         <div v-if="item.status == 'active'">
           <VideoPlayer :options="item" />
         </div>
         <div v-else>
-          Idle Stream
+          {{ item.status[0].toUpperCase() + item.status.substring(1) }} Stream {{ key +1 }}
         </div>
       </v-col>
     </v-row>
