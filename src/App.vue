@@ -102,11 +102,21 @@
     >
       <v-list v-if="this.overview == true">
         <v-list-item v-for="item, key in streams" :key="key" link>
+          <v-div v-if="item.status == 'active'">
+            <v-list-item-content>
+              <v-list-item-title @click="StreamButton(item)">Stream {{ key+1 }}</v-list-item-title>
+            </v-list-item-content>
+          </v-div>
           <div class="text-center">
             <v-bottom-sheet
                 v-model="sheet"
                 inset
             >
+              <template v-slot:activator="{ on, attrs }">
+                <v-list-item-content>
+                  <v-list-item-title v-bind="attrs" v-on="on">Stream {{ key+1 }}</v-list-item-title>
+                </v-list-item-content>
+              </template>
               <v-sheet
                   class="text-center"
                   height="200px"
@@ -120,14 +130,11 @@
                   close
                 </v-btn>
                 <div class="my-3">
-                  {{ msg }}
+                  This is a bottom sheet using the inset prop
                 </div>
               </v-sheet>
             </v-bottom-sheet>
           </div>
-          <v-list-item-content>
-            <v-list-item-title @click="StreamButton(item)">Stream {{ key+1 }}</v-list-item-title>
-          </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -207,12 +214,8 @@ export default {
       });
     },
     StreamButton(item){
-      if(item.status == "active"){
-        this.streamkey = item;
-        this.overview = false;
-      }else{
-        this.sheet == true;
-      }
+      this.streamkey = item;
+      this.overview = false;
     },
     OverviewButton(){
       this.overview = true;
