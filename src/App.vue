@@ -102,6 +102,29 @@
     >
       <v-list v-if="this.overview == true">
         <v-list-item v-for="item, key in streams" :key="key" link>
+          <div class="text-center">
+            <v-bottom-sheet
+                v-model="sheet"
+                inset
+            >
+              <v-sheet
+                  class="text-center"
+                  height="200px"
+              >
+                <v-btn
+                    class="mt-6"
+                    text
+                    color="error"
+                    @click="sheet = !sheet"
+                >
+                  close
+                </v-btn>
+                <div class="my-3">
+                  {{ msg }}
+                </div>
+              </v-sheet>
+            </v-bottom-sheet>
+          </div>
           <v-list-item-content>
             <v-list-item-title @click="StreamButton(item)">Stream {{ key+1 }}</v-list-item-title>
           </v-list-item-content>
@@ -171,6 +194,7 @@ export default {
       interval: null,
       streams: null,
       loading: true,
+      sheet: false,
     }
   },
   watch: {},
@@ -187,7 +211,7 @@ export default {
         this.streamkey = item;
         this.overview = false;
       }else{
-        alert("Stream Inactive")
+        this.sheet == true;
       }
     },
     OverviewButton(){
