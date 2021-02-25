@@ -100,7 +100,7 @@
         clipped
         right
     >
-      <v-list>
+      <v-list v-if="this.overview == true">
         <v-list-item v-for="item, key in streams" :key="key" link>
           <v-list-item-content>
             <v-list-item-title @click="StreamButton(item)">Stream {{ key+1 }}</v-list-item-title>
@@ -114,7 +114,7 @@
         <VideoPlayer :options="this.streamkey" />
       </div>
       <div v-else-if="loading">
-        <v-row no-gutters>
+        <v-row no-gutters class="pt-3">
           <v-col cols="4">
 
           </v-col>
