@@ -130,7 +130,7 @@
                   close
                 </v-btn>
                 <div class="my-3">
-                  This is a bottom sheet using the inset prop
+                  Stream {{ key+1 }} is currently {{ item.status[0].toUpperCase() + item.status.substring(1) }}.
                 </div>
               </v-sheet>
             </v-bottom-sheet>
