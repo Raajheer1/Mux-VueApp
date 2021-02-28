@@ -142,7 +142,7 @@
         Manage Streams Page Place Holder
       </div>
       <div v-else-if="setting">
-        Manage Streams Page Place Holder
+        Settings Page Place Holder
       </div>
       <video-grid v-else v-bind:streams="streams"></video-grid>
     </v-main>
