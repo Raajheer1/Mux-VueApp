@@ -79,7 +79,7 @@
         </v-list-item>
         <v-list-item link>
           <v-list-item-content>
-            <v-list-item-title @click="">New Stream</v-list-item-title>
+            <v-list-item-title>New Stream</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
