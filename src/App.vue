@@ -79,17 +79,17 @@
         </v-list-item>
         <v-list-item link>
           <v-list-item-content>
-            <v-list-item-title>New Stream</v-list-item-title>
+            <v-list-item-title @click="">New Stream</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
           <v-list-item-content>
-            <v-list-item-title>Manage Streams</v-list-item-title>
+            <v-list-item-title @click="ManageButton">Manage Streams</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
           <v-list-item-content>
-            <v-list-item-title>Settings</v-list-item-title>
+            <v-list-item-title @click="SettingsButton">Settings</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -136,7 +136,10 @@
         </v-row>
       </div>
       <div v-else-if="analytics">
-
+        Analytics Page Place Holder
+      </div>
+      <div v-else-if="manage">
+        Manage Streams Page Place Holder
       </div>
       <video-grid v-else v-bind:streams="streams"></video-grid>
     </v-main>
@@ -212,6 +215,20 @@ export default {
       this.analytics = true;
       this.manage = false;
       this.setting = false;
+      this.streamkey = null;
+    },
+    ManageButton(){
+      this.overview = false;
+      this.analytics = false;
+      this.manage = true;
+      this.setting = false;
+      this.streamkey = null;
+    },
+    SettingsButton(){
+      this.overview = false;
+      this.analytics = false;
+      this.manage = false;
+      this.setting = true;
       this.streamkey = null;
     }
   },
