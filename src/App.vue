@@ -79,7 +79,7 @@
         </v-list-item>
         <v-list-item link>
           <v-list-item-content>
-            <v-list-item-title>New Stream</v-list-item-title>
+            <v-list-item-title @click="newVideo">New Stream</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
@@ -162,6 +162,7 @@
           solo
       ></v-text-field>
     </v-footer>
+    <notifications group="newStream" position="bottom right"/>
   </v-app>
 </template>
 
@@ -174,6 +175,7 @@ export default {
   name: 'App',
   data() {
     return {
+      appURL: "https://muxpresman.herokuapp.com/",
       drawer: null,
       overview: true,
       analytics: false,
@@ -191,8 +193,18 @@ export default {
   components: { videoGrid, VideoPlayer },
   methods: {
     getVideo(){
-      axios.get("https://muxpresman.herokuapp.com/list").then(response => {
+      axios.get(`${this.appURL}list`).then(response => {
         this.streams = response.data;
+      });
+    },
+    newVideo(){
+      axios.get(`${this.appURL}create`).then(response => {
+        this.$notify({
+          type: 'success',
+          group: 'newStream',
+          title: 'New Stream Created!',
+          text: `Stream Key: ${response.data["stream_key"]} <br> Playback URL: https://stream.mux.com/${response.data["playback_ids"]["id"]}.m3u8`
+        });
       });
     },
     StreamButton(item){
@@ -237,7 +249,7 @@ export default {
   mounted() {
   },
   created() {
-    // axios.get("https://muxpresman.herokuapp.com/list").then(response => {
+    // axios.get(`${this.appURL}list`).then(response => {
     //   this.streams = response.data;
     //   this.loading = false;
     // });
