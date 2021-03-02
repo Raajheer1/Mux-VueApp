@@ -1,23 +1,26 @@
 <template>
   <v-app id="inspire">
-    <v-system-bar app>
-      <v-spacer></v-spacer>
-
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
-    </v-system-bar>
-
     <v-app-bar
         app
         clipped-right
         flat
         height="72"
     >
+      <h1>
+        <div v-if="overview">
+          Overview
+        </div>
+        <div v-else-if="analytics">
+          Analytics
+        </div>
+        <div v-else-if="manage">
+          Manage Streams
+        </div>
+        <div v-else-if="setting">
+          Settings
+        </div>
+      </h1>
       <v-spacer></v-spacer>
-
       <v-responsive max-width="156">
         <v-text-field
             dense
@@ -32,30 +35,8 @@
     <v-navigation-drawer
         v-model="drawer"
         app
-        width="300"
+        width="200"
     >
-      <v-navigation-drawer
-          v-model="drawer"
-          absolute
-          color="grey lighten-3"
-          mini-variant
-      >
-        <v-avatar
-            class="d-block text-center mx-auto mt-4"
-            color="grey darken-1"
-            size="36"
-        ></v-avatar>
-
-        <v-divider class="mx-3 my-5"></v-divider>
-
-        <v-avatar
-            v-for="n in 6"
-            :key="n"
-            class="d-block text-center mx-auto mb-9"
-            color="grey lighten-1"
-            size="28"
-        ></v-avatar>
-      </v-navigation-drawer>
 
       <v-sheet
           color="grey lighten-5"
@@ -64,7 +45,7 @@
       ></v-sheet>
 <!--      LEFT BAR      -->
       <v-list
-          class="pl-14"
+          class="pl-1"
           shaped
       >
         <v-list-item link>
@@ -121,7 +102,7 @@
           <v-col cols="4">
             <v-card color="#363636" dark>
               <v-card-text>
-                Loading
+                Loading...
                 <v-progress-linear
                     indeterminate
                     color="#05ffbc"
