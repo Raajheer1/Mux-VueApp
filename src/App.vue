@@ -204,7 +204,7 @@ export default {
           duration: 30000,
           group: 'newStream',
           title: 'New Stream Created!',
-          text: `Stream Key: ${response.data["stream_key"]} <br> Playback URL: https://stream.mux.com/${response.data["playback_ids"]["id"]}.m3u8`
+          text: `Stream Key: ${response.data["stream_key"]} <br> Playback URL: https://stream.mux.com/${response.data["playback_ids"][0]["id"]}.m3u8`
         });
         this.getVideo();
       });
