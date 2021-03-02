@@ -48,7 +48,7 @@
       ></v-sheet>
 <!--      LEFT BAR      -->
       <v-list
-          class="pl-1"
+          class="pl-0"
           shaped
       >
         <v-list-item link>
