@@ -21,11 +21,13 @@ app.get('/list', async (req, res) => {
 });
 
 app.get('/create', async (req, res) => {
-    return await Video.LiveStreams.create({
+    var x;
+    x = await Video.LiveStreams.create({
         playback_policy: 'public',
         reconnect_window: 10,
         new_asset_settings: { playback_policy: 'public'}
     });
+    res.send(x);
 });
 
 app.listen(process.env.PORT || 5000);
