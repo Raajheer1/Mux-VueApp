@@ -19,6 +19,9 @@
         <div v-else-if="setting">
           Settings
         </div>
+        <div v-else>
+          Stream {{ this.title }}
+        </div>
       </h1>
       <v-spacer></v-spacer>
       <v-responsive max-width="156">
@@ -84,7 +87,7 @@
       <v-list v-if="this.overview == true">
         <v-list-item v-for="item, key in streams" :key="key" link>
           <v-list-item-content>
-            <v-list-item-title @click="StreamButton(item)">Stream {{ key+1 }}</v-list-item-title>
+            <v-list-item-title @click="StreamButton(item, key+1)">Stream {{ key+1 }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -162,6 +165,7 @@ export default {
       analytics: false,
       manage: false,
       setting: false,
+      title: null,
       streamkey: null,
       interval: null,
       streams: null,
@@ -190,13 +194,14 @@ export default {
         this.getVideo();
       });
     },
-    StreamButton(item){
+    StreamButton(item, key){
       if(item.status == 'active') {
         this.streamkey = item;
         this.overview = false;
         this.analytics = false;
         this.manage = false;
         this.setting = false;
+        this.title = key;
       }
     },
     OverviewButton(){
