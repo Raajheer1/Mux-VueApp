@@ -194,18 +194,6 @@ export default {
         this.getVideo();
       });
     },
-    delVideo(item){
-      axios.get(`${this.appURL}del/${item.id}`).then(response => {
-        this.$notify({
-          type: 'error',
-          duration: 10000,
-          group: 'newStream',
-          title: 'Stream Deleted!',
-          text: `The stream has been successfully deleted.`
-        });
-        console.log(response.data);
-      });
-    },
     StreamButton(item, key){
       if(item.status == 'active') {
         this.streamkey = item;
