@@ -30,4 +30,10 @@ app.get('/create', async (req, res) => {
     res.send(x);
 });
 
+app.get('/del/:StreamID', async (req, res) => {
+    var x;
+    x = await Video.LiveStreams.del(req.params["StreamID"]);
+    res.send(x);
+});
+
 app.listen(process.env.PORT || 5000);
