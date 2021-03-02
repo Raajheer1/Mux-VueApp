@@ -32,6 +32,7 @@ export default {
   name: "videoGrid",
   data() {
     return {
+      appURL: "https://muxpresman.herokuapp.com/",
       stuff: null,
       cols: 3,
       deleting: false
