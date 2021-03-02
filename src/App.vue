@@ -52,28 +52,28 @@
           shaped
       >
         <v-list-item link>
-          <v-list-item-content>
-            <v-list-item-title @click="OverviewButton">Overview</v-list-item-title>
+          <v-list-item-content @click="OverviewButton">
+            <v-list-item-title>Overview</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
-          <v-list-item-content>
-            <v-list-item-title @click="AnalyticsButton">Stream Analytics</v-list-item-title>
+          <v-list-item-content @click="AnalyticsButton">
+            <v-list-item-title>Stream Analytics</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
-          <v-list-item-content>
-            <v-list-item-title @click="newVideo">New Stream</v-list-item-title>
+          <v-list-item-content @click="newVideo">
+            <v-list-item-title>New Stream</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
-          <v-list-item-content>
-            <v-list-item-title @click="ManageButton">Manage Streams</v-list-item-title>
+          <v-list-item-content @click="ManageButton">
+            <v-list-item-title>Manage Streams</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
-          <v-list-item-content>
-            <v-list-item-title @click="SettingsButton">Settings</v-list-item-title>
+          <v-list-item-content @click="SettingsButton">
+            <v-list-item-title>Settings</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -86,8 +86,8 @@
     >
       <v-list v-if="this.overview == true">
         <v-list-item v-for="item, key in streams" :key="key" link>
-          <v-list-item-content>
-            <v-list-item-title @click="StreamButton(item, key+1)">Stream {{ key+1 }}</v-list-item-title>
+          <v-list-item-content @click="StreamButton(item, key+1)">
+            <v-list-item-title>Stream {{ key+1 }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
