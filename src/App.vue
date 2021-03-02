@@ -201,10 +201,12 @@ export default {
       axios.get(`${this.appURL}create`).then(response => {
         this.$notify({
           type: 'success',
+          duration: 30000,
           group: 'newStream',
           title: 'New Stream Created!',
           text: `Stream Key: ${response.data["stream_key"]} <br> Playback URL: https://stream.mux.com/${response.data["playback_ids"]["id"]}.m3u8`
         });
+        this.getVideo();
       });
     },
     StreamButton(item){
