@@ -8,6 +8,7 @@
         </div>
         <div v-else>
           {{ item.status[0].toUpperCase() + item.status.substring(1) }} Stream {{ value * 3 + key + 1 }}
+          <v-spacer></v-spacer>
           <v-btn
               :loading="deleting"
               class="ma-1"
