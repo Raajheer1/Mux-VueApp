@@ -13,9 +13,6 @@
         <div v-else-if="analytics">
           Analytics
         </div>
-        <div v-else-if="manage">
-          Manage Streams
-        </div>
         <div v-else-if="setting">
           Settings
         </div>
@@ -64,11 +61,6 @@
         <v-list-item link>
           <v-list-item-content @click="newVideo">
             <v-list-item-title>New Stream</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-content @click="ManageButton">
-            <v-list-item-title>Manage Streams</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
@@ -122,9 +114,6 @@
       <div v-else-if="analytics">
         Analytics Page Place Holder
       </div>
-      <div v-else-if="manage">
-        Manage Streams Page Place Holder
-      </div>
       <div v-else-if="setting">
         Settings Page Place Holder
       </div>
@@ -163,7 +152,6 @@ export default {
       drawer: null,
       overview: true,
       analytics: false,
-      manage: false,
       setting: false,
       title: null,
       streamkey: null,
@@ -199,7 +187,6 @@ export default {
         this.streamkey = item;
         this.overview = false;
         this.analytics = false;
-        this.manage = false;
         this.setting = false;
         this.title = key;
       }
@@ -207,7 +194,6 @@ export default {
     OverviewButton(){
       this.overview = true;
       this.analytics = false;
-      this.manage = false;
       this.analytics = false;
       this.setting = false;
       this.streamkey = null;
@@ -215,21 +201,18 @@ export default {
     AnalyticsButton(){
       this.overview = false;
       this.analytics = true;
-      this.manage = false;
       this.setting = false;
       this.streamkey = null;
     },
     ManageButton(){
       this.overview = false;
       this.analytics = false;
-      this.manage = true;
       this.setting = false;
       this.streamkey = null;
     },
     SettingsButton(){
       this.overview = false;
       this.analytics = false;
-      this.manage = false;
       this.setting = true;
       this.streamkey = null;
     }
