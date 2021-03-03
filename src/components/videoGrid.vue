@@ -10,6 +10,14 @@
           {{ item.status[0].toUpperCase() + item.status.substring(1) }} Stream {{ value * 3 + key + 1 }}
           <v-spacer></v-spacer>
           <v-btn
+              class="ma-1"
+              color="success"
+              plain
+              @click="copyURL(item)"
+          >
+            PlaybackURL
+          </v-btn>
+          <v-btn
               :loading="deleting"
               class="ma-1"
               color="error"
@@ -17,14 +25,6 @@
               @click="delVideo(item)"
           >
             Delete
-          </v-btn>
-          <v-btn
-              class="ma-1"
-              color="success"
-              plain
-              @click="copyURL(item)"
-          >
-            PlaybackURL
           </v-btn>
           <v-btn
               class="ma-1"
