@@ -189,6 +189,14 @@ export default {
         this.analytics = false;
         this.setting = false;
         this.title = key;
+      }else{
+        this.$notify({
+          type: 'error',
+          duration: 5000,
+          group: 'newStream',
+          title: 'Error no Stream.',
+          text: `The stream is not being used.`
+        });
       }
     },
     OverviewButton(){
