@@ -18,6 +18,22 @@
           >
             Delete
           </v-btn>
+          <v-btn
+              class="ma-1"
+              color="success"
+              plain
+              @click="copyURL(item)"
+          >
+            PlaybackURL
+          </v-btn>
+          <v-btn
+              class="ma-1"
+              color="success"
+              plain
+              @click="copy(item)"
+          >
+            StreamKey
+          </v-btn>
         </div>
       </v-col>
     </v-row>
@@ -70,6 +86,44 @@ export default {
         console.log(response.data);
       });
       this.loading = false;
+    },
+    copy(item){
+      this.$copyText(item["stream_key"]).then(() => {
+        this.$notify({
+          type: 'success',
+          duration: 3000,
+          group: 'newStream',
+          title: 'Copied StreamKey!',
+          text: `The StreamKey has been copied to your clipboard.`
+        });
+      }), () => {
+        this.$notify({
+          type: 'error',
+          duration: 3000,
+          group: 'newStream',
+          title: 'StreamKey copy error!',
+          text: `The StreamKey could not be copied to your clipboard.`
+        });
+      }
+    },
+    copyURL(item){
+      this.$copyText(`https://stream.mux.com/${item['playback_ids'][0]['id']}.m3u8`).then(() => {
+        this.$notify({
+          type: 'success',
+          duration: 3000,
+          group: 'newStream',
+          title: 'Copied PlaybackURL!',
+          text: `The PlaybackURL has been copied to your clipboard.`
+        });
+      }), () => {
+        this.$notify({
+          type: 'error',
+          duration: 3000,
+          group: 'newStream',
+          title: 'PlaybackURL copy error!',
+          text: `The PlaybackURL could not be copied to your clipboard.`
+        });
+      }
     }
   },
   mounted() {
