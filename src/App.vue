@@ -42,7 +42,14 @@
           color="grey lighten-5"
           height="128"
           width="100%"
-      ></v-sheet>
+      >
+        <div class="text-center pt-6">
+          <h1 style="color: black;">
+            CEAVCO
+            LIVE CONTROL
+          </h1>
+        </div>
+      </v-sheet>
 <!--      LEFT BAR      -->
       <v-list
           class="pl-0"
