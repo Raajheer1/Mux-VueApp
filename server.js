@@ -20,6 +20,11 @@ app.get('/list', async (req, res) => {
     res.send(stream);
 });
 
+app.get('/listasset', async (req, res) => {
+    const stream = await Video.Assets.list();
+    res.send(stream);
+});
+
 app.get('/create', async (req, res) => {
     var x;
     x = await Video.LiveStreams.create({
