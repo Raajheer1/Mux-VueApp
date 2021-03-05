@@ -16,6 +16,9 @@
         <div v-else-if="setting">
           Settings
         </div>
+        <div v-else-if="assets != null">
+          Assets
+        </div>
         <div v-else>
           Stream {{ this.title }}
         </div>
@@ -68,6 +71,11 @@
         <v-list-item link>
           <v-list-item-content @click="newVideo">
             <v-list-item-title>New Stream</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link>
+          <v-list-item-content @click="AssetsButton">
+            <v-list-item-title>Assets</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
@@ -124,6 +132,10 @@
       <div v-else-if="setting">
         Settings Page Place Holder
       </div>
+      <div v-else-if="assets != null">
+        Assets Place Holder
+        {{ this.assets }}
+      </div>
       <video-grid v-else v-bind:streams="streams"></video-grid>
     </v-main>
 
@@ -160,6 +172,7 @@ export default {
       overview: true,
       analytics: false,
       setting: false,
+      assets: null,
       title: null,
       streamkey: null,
       interval: null,
@@ -175,6 +188,11 @@ export default {
     getVideo(){
       axios.get(`${this.appURL}list`).then(response => {
         this.streams = response.data;
+      });
+    },
+    getAssets(){
+      axios.get(`${this.appURL}listasset`).then(response => {
+        this.assets = response.data;
       });
     },
     newVideo(){
@@ -195,6 +213,7 @@ export default {
         this.overview = false;
         this.analytics = false;
         this.setting = false;
+        this.assets = null;
         this.title = key;
       }else{
         this.$notify({
@@ -211,24 +230,27 @@ export default {
       this.analytics = false;
       this.analytics = false;
       this.setting = false;
+      this.assets = null;
       this.streamkey = null;
     },
     AnalyticsButton(){
       this.overview = false;
       this.analytics = true;
       this.setting = false;
-      this.streamkey = null;
-    },
-    ManageButton(){
-      this.overview = false;
-      this.analytics = false;
-      this.setting = false;
+      this.assets = null;
       this.streamkey = null;
     },
     SettingsButton(){
       this.overview = false;
       this.analytics = false;
       this.setting = true;
+      this.assets = null;
+      this.streamkey = null;
+    }
+    AssetsButton(){
+      this.overview = false;
+      this.analytics = false;
+      this.setting = false;
       this.streamkey = null;
     }
   },
