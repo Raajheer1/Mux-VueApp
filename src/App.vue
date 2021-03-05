@@ -16,7 +16,7 @@
         <div v-else-if="setting">
           Settings
         </div>
-        <div v-else-if="assets != null">
+        <div v-else-if="assetspage">
           Assets
         </div>
         <div v-else>
@@ -132,7 +132,7 @@
       <div v-else-if="setting">
         Settings Page Place Holder
       </div>
-      <div v-else-if="assets != null">
+      <div v-else-if="assetspage">
         Assets Place Holder
         {{ this.assets }}
       </div>
@@ -172,6 +172,7 @@ export default {
       overview: true,
       analytics: false,
       setting: false,
+      assetspage: false,
       assets: null,
       title: null,
       streamkey: null,
@@ -213,7 +214,7 @@ export default {
         this.overview = false;
         this.analytics = false;
         this.setting = false;
-        this.assets = null;
+        this.assetspage = false;
         this.title = key;
       }else{
         this.$notify({
@@ -230,21 +231,21 @@ export default {
       this.analytics = false;
       this.analytics = false;
       this.setting = false;
-      this.assets = null;
+      this.assetspage = false;
       this.streamkey = null;
     },
     AnalyticsButton(){
       this.overview = false;
       this.analytics = true;
       this.setting = false;
-      this.assets = null;
+      this.assetspage = false;
       this.streamkey = null;
     },
     SettingsButton(){
       this.overview = false;
       this.analytics = false;
       this.setting = true;
-      this.assets = null;
+      this.assetspage = false;
       this.streamkey = null;
     },
     AssetsButton(){
@@ -252,6 +253,7 @@ export default {
       this.analytics = false;
       this.setting = false;
       this.streamkey = null;
+      this.assetspage = true;
     },
   },
   mounted() {
