@@ -249,6 +249,7 @@ export default {
       this.streamkey = null;
     },
     AssetsButton(){
+      this.getAssets();
       this.overview = false;
       this.analytics = false;
       this.setting = false;
