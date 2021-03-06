@@ -134,6 +134,9 @@
       </div>
       <div v-else-if="assetspage">
         Assets Place Holder
+        <div v-for="asset in this.assets" :key="asset.id">
+          <VideoPlayer :options="asset" />
+        </div>
         {{ this.assets }}
       </div>
       <video-grid v-else v-bind:streams="streams"></video-grid>
