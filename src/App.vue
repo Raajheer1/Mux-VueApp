@@ -101,10 +101,7 @@
     </v-navigation-drawer>
 
     <v-main>
-      <div v-if="this.streamkey != null">
-        <VideoPlayer :options="this.streamkey" />
-      </div>
-      <div v-else-if="loading">
+      <div v-if="loading">
         <v-row no-gutters class="pt-3">
           <v-col cols="4">
 
@@ -125,6 +122,9 @@
 
           </v-col>
         </v-row>
+      </div>
+      <div v-else-if="this.streamkey != null">
+        <VideoPlayer :options="this.streamkey" />
       </div>
       <div v-else-if="analytics">
         Analytics Page Place Holder
