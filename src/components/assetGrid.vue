@@ -30,7 +30,7 @@
                 plain
                 @click="copy(item)"
             >
-              StreamKey
+              LiveStreamID
             </v-btn>
           </div>
           <div v-else class="text-center">
@@ -59,7 +59,7 @@
                 plain
                 @click="copy(item)"
             >
-              StreamKey
+              LiveStreamID
             </v-btn>
           </div>
         </v-card>
@@ -116,13 +116,13 @@ export default {
       this.loading = false;
     },
     copy(item){
-      this.$copyText(item["stream_key"]).then(() => {
+      this.$copyText(item["live_stream_id"]).then(() => {
         this.$notify({
           type: 'success',
           duration: 3000,
           group: 'newStream',
-          title: 'Copied StreamKey!',
-          text: `The StreamKey has been copied to your clipboard.`
+          title: 'Copied Live Stream ID!',
+          text: `The Stream ID has been copied to your clipboard.`
         });
       }), () => {
         this.$notify({
