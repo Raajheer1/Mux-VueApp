@@ -133,11 +133,9 @@
         Settings Page Place Holder
       </div>
       <div v-else-if="assetspage">
-        Assets Place Holder
         <div v-for="asset in this.assets" :key="asset.id">
-          <VideoPlayer :options="asset" />
+          <asset-grid v-bind:streams="assets" />
         </div>
-        {{ this.assets }}
       </div>
       <video-grid v-else v-bind:streams="streams"></video-grid>
     </v-main>
@@ -164,6 +162,7 @@
 <script>
 import axios from 'axios';
 import videoGrid from './components/videoGrid';
+import assetGrid from './components/assetGrid';
 import VideoPlayer from './components/VideoPlayer';
 
 export default {
@@ -187,7 +186,7 @@ export default {
   },
   watch: {},
   computed: {},
-  components: { videoGrid, VideoPlayer },
+  components: { videoGrid, VideoPlayer, assetGrid },
   methods: {
     getVideo(){
       axios.get(`${this.appURL}list`).then(response => {
@@ -200,6 +199,7 @@ export default {
       });
     },
     newVideo(){
+      this loading = true;
       axios.get(`${this.appURL}create`).then(response => {
         this.$notify({
           type: 'success',
@@ -210,6 +210,7 @@ export default {
         });
         this.getVideo();
       });
+      this loading = false;
     },
     StreamButton(item, key){
       if(item.status == 'active') {

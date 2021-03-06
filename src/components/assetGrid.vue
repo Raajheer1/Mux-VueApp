@@ -73,7 +73,7 @@ import VideoPlayer from './VideoPlayer';
 import axios from 'axios';
 
 export default {
-  name: "videoGrid",
+  name: "assetGrid",
   data() {
     return {
       appURL: "https://muxpresman.herokuapp.com/",
