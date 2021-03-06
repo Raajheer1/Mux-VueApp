@@ -41,4 +41,10 @@ app.get('/del/:StreamID', async (req, res) => {
     res.send(x);
 });
 
+app.get('/delasset/:AssetID', async (req, res) => {
+    var x;
+    x = await Video.Assets.del(req.params["AssetID"]);
+    res.send(x);
+});
+
 app.listen(process.env.PORT || 5000);

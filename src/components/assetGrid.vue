@@ -103,13 +103,13 @@ export default {
   methods: {
     delVideo(item){
       this.loading = true;
-      axios.get(`${this.appURL}del/${item.id}`).then(response => {
+      axios.get(`${this.appURL}delasset/${item.id}`).then(response => {
         this.$notify({
           type: 'error',
           duration: 10000,
           group: 'newStream',
-          title: 'Stream Deleted!',
-          text: `The stream has been successfully deleted.`
+          title: 'Asset Deleted!',
+          text: `The asset has been successfully deleted.`
         });
         console.log(response.data);
       });
