@@ -133,9 +133,7 @@
         Settings Page Place Holder
       </div>
       <div v-else-if="assetspage">
-        <div v-for="asset in this.assets" :key="asset.id">
-          <asset-grid v-bind:streams="assets" />
-        </div>
+        <asset-grid v-bind:streams="this.assets" />
       </div>
       <video-grid v-else v-bind:streams="streams"></video-grid>
     </v-main>
