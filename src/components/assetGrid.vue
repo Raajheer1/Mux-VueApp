@@ -4,7 +4,7 @@
     <v-row v-for="column, value in columns" :key="column.id" class="v-row__border">
       <v-col v-for="item, key in column" :key="item.id" class="v-col__border">
         <v-card elevation="15" class="pa-4">
-          <div v-if="item.status == 'active'">
+          <div v-if="item.status == 'ready'">
             <VideoPlayer :options="item" />
             <v-spacer></v-spacer>
             <v-btn
@@ -34,7 +34,7 @@
             </v-btn>
           </div>
           <div v-else class="text-center">
-            {{ item.status[0].toUpperCase() + item.status.substring(1) }} Stream {{ value * 3 + key + 1 }}
+            {{ item.status[0].toUpperCase() + item.status.substring(1) }} Asset {{ value * 3 + key + 1 }}
             <v-spacer></v-spacer>
             <v-btn
                 class="ma-1"
