@@ -264,8 +264,11 @@ export default {
   created() {
     axios.get(`${this.appURL}list`).then(response => {
       this.streams = response.data;
-      this.loading = false;
     });
+    axios.get(`${this.appURL}listasset`).then(response => {
+      this.assets = response.data;
+    });
+    this.loading = false;
     this.interval = setInterval(() => this.getVideo(), 5000);
 
     //DEBUG CODE --- REMOVE ---
