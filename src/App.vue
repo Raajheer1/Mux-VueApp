@@ -199,7 +199,7 @@ export default {
       });
     },
     newVideo(){
-      this loading = true;
+      this.loading = true;
       axios.get(`${this.appURL}create`).then(response => {
         this.$notify({
           type: 'success',
@@ -210,7 +210,7 @@ export default {
         });
         this.getVideo();
       });
-      this loading = false;
+      this.loading = false;
     },
     StreamButton(item, key){
       if(item.status == 'active') {
