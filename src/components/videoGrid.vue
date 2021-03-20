@@ -15,15 +15,46 @@
             >
               PlaybackURL
             </v-btn>
-            <v-btn
-                :loading="deleting"
-                class="ma-1"
-                color="error"
-                plain
-                @click="delVideo(item)"
+            <v-dialog
+                v-model="dialog"
+                persistent
+                max-width="290"
             >
-              Delete
-            </v-btn>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                    class="ma-1"
+                    color="error"
+                    plain
+                    v-bind="attrs"
+                    v-on="on"
+                >
+                  Delete
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title class="headline">
+                  Delete Stream
+                </v-card-title>
+                <v-card-text>This is a destructive action and cannot be reversed. Would you like to continue?</v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                      color="green darken-1"
+                      text
+                      @click="dialog = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                      color="red darken-1"
+                      text
+                      @click="delVideo(item)"
+                  >
+                    Delete
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
             <v-btn
                 class="ma-1"
                 color="success"
@@ -44,15 +75,46 @@
             >
               PlaybackURL
             </v-btn>
-            <v-btn
-                :loading="deleting"
-                class="ma-1"
-                color="error"
-                plain
-                @click="delVideo(item)"
+            <v-dialog
+                v-model="dialog"
+                persistent
+                max-width="290"
             >
-              Delete
-            </v-btn>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                    class="ma-1"
+                    color="error"
+                    plain
+                    v-bind="attrs"
+                    v-on="on"
+                >
+                  Delete
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title class="headline">
+                  Delete Stream
+                </v-card-title>
+                <v-card-text>This is a destructive action and cannot be reversed. Would you like to continue?</v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                      color="green darken-1"
+                      text
+                      @click="dialog = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                      color="red darken-1"
+                      text
+                      @click="delVideo(item)"
+                  >
+                    Delete
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
             <v-btn
                 class="ma-1"
                 color="success"
@@ -79,7 +141,8 @@ export default {
       appURL: "https://muxpresman.herokuapp.com/",
       stuff: null,
       cols: 3,
-      deleting: false
+      deleting: false,
+      dialog: false,
     }
   },
   props: {
@@ -102,7 +165,6 @@ export default {
   components: { VideoPlayer },
   methods: {
     delVideo(item){
-      this.loading = true;
       axios.get(`${this.appURL}del/${item.id}`).then(response => {
         this.$notify({
           type: 'error',
@@ -113,7 +175,7 @@ export default {
         });
         console.log(response.data);
       });
-      this.loading = false;
+      this.dialog = false;
     },
     copy(item){
       this.$copyText(item["stream_key"]).then(() => {

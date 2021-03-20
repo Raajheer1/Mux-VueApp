@@ -33,7 +33,7 @@
               </template>
               <v-card>
                 <v-card-title class="headline">
-                  Delete Stream
+                  Delete Asset
                 </v-card-title>
                 <v-card-text>This is a destructive action and cannot be reversed. Would you like to continue?</v-card-text>
                 <v-card-actions>
@@ -46,7 +46,7 @@
                     Cancel
                   </v-btn>
                   <v-btn
-                      color="green darken-1"
+                      color="red darken-1"
                       text
                       @click="delVideo(item)"
                   >
@@ -75,15 +75,46 @@
             >
               PlaybackURL
             </v-btn>
-            <v-btn
-                :loading="deleting"
-                class="ma-1"
-                color="error"
-                plain
-                @click="delVideo(item)"
+            <v-dialog
+                v-model="dialog"
+                persistent
+                max-width="290"
             >
-              Delete
-            </v-btn>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                    class="ma-1"
+                    color="error"
+                    plain
+                    v-bind="attrs"
+                    v-on="on"
+                >
+                  Delete
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title class="headline">
+                  Delete Asset
+                </v-card-title>
+                <v-card-text>This is a destructive action and cannot be reversed. Would you like to continue?</v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                      color="green darken-1"
+                      text
+                      @click="dialog = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                      color="red darken-1"
+                      text
+                      @click="delVideo(item)"
+                  >
+                    Delete
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
             <v-btn
                 class="ma-1"
                 color="success"
