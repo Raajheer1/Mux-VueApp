@@ -38,13 +38,6 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn
-                      color="green darken-1"
-                      text
-                      @click="dialog = false"
-                  >
-                    Cancel
-                  </v-btn>
-                  <v-btn
                       color="red darken-1"
                       text
                       @click="delVideo(item)"
@@ -96,13 +89,6 @@
                 <v-card-text>This is a destructive action and cannot be reversed. Would you like to continue?</v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn
-                      color="green darken-1"
-                      text
-                      @click="dialog = false"
-                  >
-                    Cancel
-                  </v-btn>
                   <v-btn
                       color="red darken-1"
                       text
