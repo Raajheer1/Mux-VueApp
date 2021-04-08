@@ -7,7 +7,7 @@ const app = express();
 
 
 const Mux = require('@mux/mux-node');
-const { Video } = new Mux("577af3aa-3e59-4a98-8462-07b369ee48cd", "fB0dD77dio5/isG2FAJ8uvVBAeqKHY106t4KrRvr5rJVOdK4iCnijgtLmkkPEUUA5MhvmgkmM3/");
+const { Video } = new Mux("a21aaac3-8706-4803-91e9-78988ec82efb", "eBFFXuF854JU7hG3iGSDXBB71RnI6UlP4DcDrMkSkcWOUQxpAvBaBZl/Wu6eAflxw/srU+Uwu1Z");
 
 
 
