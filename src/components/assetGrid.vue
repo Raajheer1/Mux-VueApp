@@ -5,7 +5,7 @@
       <v-col v-for="item, key in column" :key="item.id" class="v-col__border">
         <v-card elevation="15" class="pa-4">
           <div v-if="item.status == 'ready'">
-            <VideoPlayer :options="item" />
+            <AssetPlayer :options="item" />
             <v-spacer></v-spacer>
             <v-btn
                 class="ma-1"
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import VideoPlayer from './VideoPlayer';
+import AssetPlayer from './AssetPlayer';
 import axios from 'axios';
 
 export default {
@@ -98,7 +98,7 @@ export default {
       return columns
     }
   },
-  components: { VideoPlayer },
+  components: { AssetPlayer },
   methods: {
     delVideo(item){
       axios.get(`${this.appURL}delasset/${item.id}`).then(response => {
