@@ -144,14 +144,6 @@
         height="72"
         inset
     >
-      <v-text-field
-          background-color="grey lighten-1"
-          dense
-          flat
-          hide-details
-          rounded
-          solo
-      ></v-text-field>
     </v-footer>
     <notifications group="newStream" position="bottom right"/>
   </v-app>
