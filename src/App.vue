@@ -53,7 +53,7 @@
           </h1>
         </div>
       </v-sheet>
-      <!--      LEFT BAR      -->
+<!--      LEFT BAR      -->
       <v-list
           class="pl-0"
           shaped
