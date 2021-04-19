@@ -112,7 +112,6 @@ export default {
   name: 'App',
   data() {
     return {
-      appURL: "https://muxpresman.herokuapp.com/",
       drawer: null,
       overview: true,
       analytics: false,
@@ -146,12 +145,12 @@ export default {
   components: { },
   methods: {
     getVideo(){
-      axios.get(`${this.appURL}list`).then(response => {
+      axios.get(`${this.$store.state.appURL}list`).then(response => {
         this.$store.state.streams = response.data;
       });
     },
     getAssets(){
-      axios.get(`${this.appURL}listasset`).then(response => {
+      axios.get(`${this.$store.state.appURL}listasset`).then(response => {
         this.$store.state.assets = response.data;
       });
     },

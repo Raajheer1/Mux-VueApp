@@ -48,7 +48,7 @@ app.get('/delasset/:AssetID', async (req, res) => {
 });
 
 app.get('/login/:pass', (req, res) => {
-    if(pass == "MookieEatsCookies!") {
+    if(req.params["pass"] == "MookieEatsCookies!") {
         res.send(true);
     }else{
         res.send(false);
