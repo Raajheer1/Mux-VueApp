@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    appURL: "https://muxpresman.herokuapp.com/",
+    appURL: "https://muxcontrol.ceavco.live/",
     login: false,
     drawer: null,
     overview: true,
