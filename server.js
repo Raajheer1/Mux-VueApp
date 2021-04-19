@@ -47,11 +47,16 @@ app.get('/delasset/:AssetID', async (req, res) => {
 });
 
 app.get('/login/:pass', (req, res) => {
-    if(pass == "MookieEatsCookies!"){
+    if(pass == "MookieEatsCookies!") {
         res.send(true);
     }else{
         res.send(false);
     }
 });
+
+
+app.use(history());
+app.use(express.static(__dirname + '/dist'));
+
 
 app.listen(process.env.PORT || 5000);
