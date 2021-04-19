@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../views/Login.vue'
+import Login from '@/views/Login.vue'
+import Overview from '@/views/videoGrid'
+import VideoPlayer from "@/views/VideoPlayer"
+import Assets from "@/views/assetGrid"
 
 Vue.use(VueRouter)
 
@@ -10,6 +13,21 @@ const routes = [
     name: 'Login',
     component: Login
   },
+  {
+    path: '/overview',
+    name: 'overview',
+    component: Overview,
+  },
+  {
+    path: '/assets',
+    name: 'assets',
+    component: Assets,
+  },
+  {
+    path: '/stream',
+    name: 'stream',
+    component: VideoPlayer,
+  }
   // {
   //   path: '/about',
   //   name: 'About',

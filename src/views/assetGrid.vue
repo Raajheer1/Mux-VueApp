@@ -4,8 +4,8 @@
     <v-row v-for="column, value in columns" :key="column.id" class="v-row__border">
       <v-col v-for="item, key in column" :key="item.id" class="v-col__border">
         <v-card elevation="15" class="pa-4">
-          <div v-if="item.status == 'active'">
-            <VideoPlayer :options="item" />
+          <div v-if="item.status == 'ready'">
+            <AssetPlayer :options="item" />
             <v-spacer></v-spacer>
             <v-btn
                 class="ma-1"
@@ -29,11 +29,11 @@
                 plain
                 @click="copy(item)"
             >
-              StreamKey
+              LiveStreamID
             </v-btn>
           </div>
           <div v-else class="text-center">
-            {{ item.status[0].toUpperCase() + item.status.substring(1) }} Stream {{ value * 3 + key + 1 }}
+            {{ item.status[0].toUpperCase() + item.status.substring(1) }} Asset {{ value * 3 + key + 1 }}
             <v-spacer></v-spacer>
             <v-btn
                 class="ma-1"
@@ -57,7 +57,7 @@
                 plain
                 @click="copy(item)"
             >
-              StreamKey
+              LiveStreamID
             </v-btn>
           </div>
         </v-card>
@@ -67,29 +67,26 @@
 </template>
 
 <script>
-import VideoPlayer from './VideoPlayer';
+import AssetPlayer from '@/components/AssetPlayer';
 import axios from 'axios';
 
 export default {
-  name: "videoGrid",
+  name: "assetGrid",
   data() {
     return {
       appURL: "https://muxpresman.herokuapp.com/",
       stuff: null,
       cols: 3,
       deleting: false,
-      dialog: false,
+      dialog: false
     }
-  },
-  props: {
-    streams: Array
   },
   watch: {},
   computed: {
     columns () {
       let columns = []
       columns.push([])
-      this.streams.forEach((item, key) => {
+      this.$store.state.assets.forEach((item, key) => {
         columns[Math.floor(key/this.cols)].push(item);
         if(key%3 == 2){
           columns.push([]);
@@ -98,28 +95,28 @@ export default {
       return columns
     }
   },
-  components: { VideoPlayer },
+  components: { AssetPlayer },
   methods: {
     delVideo(item){
-      axios.get(`${this.appURL}del/${item.id}`).then(response => {
+      axios.get(`${this.appURL}delasset/${item.id}`).then(response => {
         this.$notify({
           type: 'error',
           duration: 10000,
           group: 'newStream',
-          title: 'Stream Deleted!',
-          text: `The stream has been successfully deleted.`
+          title: 'Asset Deleted!',
+          text: `The asset has been successfully deleted.`
         });
         console.log(response.data);
       });
     },
     copy(item){
-      this.$copyText(item["stream_key"]).then(() => {
+      this.$copyText(item["live_stream_id"]).then(() => {
         this.$notify({
           type: 'success',
           duration: 3000,
           group: 'newStream',
-          title: 'Copied StreamKey!',
-          text: `The StreamKey has been copied to your clipboard.`
+          title: 'Copied Live Stream ID!',
+          text: `The Stream ID has been copied to your clipboard.`
         });
       }), () => {
         this.$notify({
@@ -152,6 +149,11 @@ export default {
     }
   },
   mounted() {
+  },
+  created() {
+    if(!this.$store.state.login){
+      this.$router.push("/");
+    }
   }
 }
 </script>
