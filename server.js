@@ -11,8 +11,6 @@ const { Video } = new Mux("a21aaac3-8706-4803-91e9-78988ec82efb", "eBFFXuF854JU7
 
 
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
-app.use(express.static(__dirname + '/dist'));
-app.use(history());
 
 app.get('/list', async (req, res) => {
     const stream = await Video.LiveStreams.list();
