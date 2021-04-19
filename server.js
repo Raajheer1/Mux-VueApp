@@ -4,13 +4,14 @@ const enforce = require('express-sslify');
 
 const app = express();
 
+const https = require('https').Server({key: fs.readFileSync("/etc/letsencrypt/live/muxcontrol.ceavco.live/privkey.pem"), cert: fs.readFileSync("/etc/letsencrypt/live/muxcontrol.ceavco.live/fullchain.pem")}, app);
 
 const Mux = require('@mux/mux-node');
 const { Video } = new Mux("a21aaac3-8706-4803-91e9-78988ec82efb", "eBFFXuF854JU7hG3iGSDXBB71RnI6UlP4DcDrMkSkcWOUQxpAvBaBZl/Wu6eAflxw/srU+Uwu1Z");
 
 
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(enforce.HTTPS());
 
 app.get('/list', async (req, res) => {
     const stream = await Video.LiveStreams.list();
@@ -57,4 +58,6 @@ app.use(history());
 app.use(express.static(__dirname + '/dist'));
 
 
-app.listen(process.env.PORT || 5000);
+const listener = https.listen(process.env.PORT || 443, function() {
+    console.log('Your app is listening on port ' + listener.address().port);
+});
