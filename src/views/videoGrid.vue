@@ -74,7 +74,6 @@ export default {
   name: "videoGrid",
   data() {
     return {
-      appURL: "https://muxpresman.herokuapp.com/",
       stuff: null,
       cols: 3,
       deleting: false,
@@ -100,7 +99,7 @@ export default {
   components: { VideoPlayer },
   methods: {
     delVideo(item){
-      axios.get(`${this.appURL}del/${item.id}`).then(response => {
+      axios.get(`${this.$store.state.appURL}del/${item.id}`).then(response => {
         this.$notify({
           type: 'error',
           duration: 10000,

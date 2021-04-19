@@ -14,6 +14,9 @@
         <div v-else-if="isAssets">
           Assets
         </div>
+        <div v-else-if="!isLogin">
+          Login
+        </div>
       </h1>
       <v-spacer></v-spacer>
       <v-responsive max-width="156">

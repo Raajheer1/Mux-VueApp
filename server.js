@@ -1,5 +1,4 @@
 const express = require('express');
-const serveStatic = require('serve-static');
 const history = require('connect-history-api-fallback');
 const enforce = require('express-sslify');
 
@@ -12,8 +11,8 @@ const { Video } = new Mux("a21aaac3-8706-4803-91e9-78988ec82efb", "eBFFXuF854JU7
 
 
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
-app.use(serveStatic(__dirname + '/dist'));
-//app.use(history());
+app.use(express.static(__dirname + '/dist'));
+app.use(history());
 
 app.get('/list', async (req, res) => {
     const stream = await Video.LiveStreams.list();
@@ -45,6 +44,14 @@ app.get('/delasset/:AssetID', async (req, res) => {
     var x;
     x = await Video.Assets.del(req.params["AssetID"]);
     res.send(x);
+});
+
+app.get('/login/:pass', (req, res) => {
+    if(pass == "MookieEatsCookies!"){
+        res.send(true);
+    }else{
+        res.send(false);
+    }
 });
 
 app.listen(process.env.PORT || 5000);

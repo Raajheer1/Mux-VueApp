@@ -74,7 +74,6 @@ export default {
   name: "assetGrid",
   data() {
     return {
-      appURL: "https://muxpresman.herokuapp.com/",
       stuff: null,
       cols: 3,
       deleting: false,
@@ -98,7 +97,7 @@ export default {
   components: { AssetPlayer },
   methods: {
     delVideo(item){
-      axios.get(`${this.appURL}delasset/${item.id}`).then(response => {
+      axios.get(`${this.$store.state.appURL}delasset/${item.id}`).then(response => {
         this.$notify({
           type: 'error',
           duration: 10000,
