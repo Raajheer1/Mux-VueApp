@@ -1,19 +1,15 @@
 const express = require('express');
-const history = require('connect-history-api-fallback');
-const enforce = require('express-sslify');
 const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
 
-const https = require('https').Server({key: fs.readFileSync("/etc/letsencrypt/live/muxcontrol.ceavco.live/privkey.pem"), cert: fs.readFileSync("/etc/letsencrypt/live/muxcontrol.ceavco.live/fullchain.pem")}, app);
 
 const Mux = require('@mux/mux-node');
 const { Video } = new Mux("a21aaac3-8706-4803-91e9-78988ec82efb", "eBFFXuF854JU7hG3iGSDXBB71RnI6UlP4DcDrMkSkcWOUQxpAvBaBZl/Wu6eAflxw/srU+Uwu1Z");
 
 
 app.use(cors());
-app.use(enforce.HTTPS());
 
 app.get('/list', async (req, res) => {
     const stream = await Video.LiveStreams.list();
@@ -56,10 +52,7 @@ app.get('/login/:pass', (req, res) => {
 });
 
 
-app.use(history());
-app.use(express.static(__dirname + '/dist'));
 
-
-const listener = https.listen(process.env.PORT || 443, function() {
-    console.log('Your app is listening on port ' + listener.address().port);
+app.listen(3000, () => {
+    console.log("App Listening on port 3000");
 });
